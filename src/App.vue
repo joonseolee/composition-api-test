@@ -1,32 +1,41 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <div class="about">
+    <h1>This is an about page</h1>
+    <button @click="increment">Click -> {{ state.count }}</button>
+  </div>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script setup lang="ts">
+import { defineComponent, reactive, onMounted } from '@vue/composition-api';
+// export default defineComponent({
+//   setup(props, context) {
+//     const state: { count: number; name: string } = reactive({ count: 0, name: "" });
+
+//     const increment = (): void => {
+//       state.count += 1;
+//     }
+
+//     onMounted(() => {
+//       console.log('step2 -> onMounted');
+//     })
+
+//     console.log("hi from the defineComponent");
+//     return { state, increment };
+//   }
+// })
+
+
+const state = reactive({ count: 0, name: "" });
+
+const increment = () => {
+  state.count += 1;
 }
 
-#nav {
-  padding: 30px;
-}
+onMounted(() => {
+  console.log('step2 -> onMounted');
+})
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+console.log("hi from the setup tag");
+</script>
